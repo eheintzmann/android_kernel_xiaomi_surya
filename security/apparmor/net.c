@@ -25,6 +25,7 @@
 
 struct aa_sfs_entry aa_sfs_entry_network[] = {
 	AA_SFS_FILE_STRING("af_mask",	AA_SFS_AF_MASK),
+	AA_SFS_FILE_BOOLEAN("af_unix", 1),
 	{ }
 };
 
@@ -128,7 +129,6 @@ void audit_net_cb(struct audit_buffer *ab, void *va)
 			aa_audit_perm_mask(ab, aad(sa)->denied, NULL, 0,
 					   net_mask_names, NET_PERMS_MASK);
 		}
-	}
 	}
 	if (sa->u.net->family == AF_UNIX) {
 		if ((aad(sa)->request & ~NET_PEER_MASK) && aad(sa)->net.addr)
